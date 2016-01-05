@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <title>{{ page_title }} - {{ shop.name }}</title>
+
+  {{ content_for_header }}
+
+  {{ "normalize.css" | asset_url | stylesheet_tag }}
+  {{ "style.css" | asset_url | stylesheet_tag }}
+
+  {{ "option_selection.js" | shopify_asset_url | script_tag }}
+  {{ "shopify_common.js" | shopify_asset_url | script_tag }}
+  {{ "customer_area.js"  | shopify_asset_url | script_tag }}
+  {{ '//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.js' | script_tag }}
+
+</head>
+<body>
+  <div class="container">
+    
+    <nav class="main-menu">
+      <a class="logo" href="/"><img class="logo-logo" src="https://cdn.shopify.com/s/files/1/0249/7784/t/40/assets/Rhone-Logo.svg?14533090245087151677" width="145" height="43"/></a>
+       <ul class="menu-items">
+         {% for link in linklists.main-menu.links %}
+         <li {% if link.active %}class="current"{% endif %}><a href="{{ link.url }}">{{ link.title }}</a></li>
+         {% endfor %}
+       </ul>
+      <div class="cart">
+        <div>NYC Pop-up</div>
+        <div>Help</div>
+        <div>Sign-In</div>
+        <div class="bag">BAG {{ cart.item_count }}</div>
+      </div>
+     </nav>
+     <div class="reviews">Reviews</div>
+     <div class="content">
+      {{ content_for_layout}}
+     </div>
+    <div class="subscribe">
+      <div class="subscribe-content">
+        <div class="join">
+          <div>Join our Newsletter</div>
+          <div>Sign up to receive exclusive Rhone email.</div>
+        </div>
+        <div class="input">
+          <input placeholder="Your Email">
+          <button>Subscribe</button>
+        </div>
+      </div>
+    </div>
+     <footer>
+       <div class="footer-menu">
+         <div class="footer-icons">
+           <div class="footer-logo"><img class="footer-logo-img" src="//cdn.shopify.com/s/files/1/0249/7784/t/40/assets/rhone-white-logo.png?11695695390730018389"></div>
+          <img class="footer-stitch" src="//cdn.shopify.com/s/files/1/0249/7784/t/40/assets/stitch-red.png?11695695390730018389">
+         </div>
+         <ul class="explore">
+           <li><b>Explore</b></li>
+           {% for link in linklists.footer.links limit:7 %}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+             {% endfor %}
+         </ul>
+         <ul class="support">
+           <li><b>Support</b></li>
+             {% for link in linklists.footer.links offset:7 %}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+             {% endfor %}
+         </ul>
+         <ul class="connect">
+           <li><b>Connect</b></li>
+           <li><a href="">Facebook</a></li>
+           <li><a href="">Instagram</a></li>
+           <li><a href="">Twitter</a></li>
+         </ul>
+       </div>
+       <p class="copyright">Copyright © 2016 Rhone Apparel. All Rights Reserved.</p>
+    </footer>
+  </div>
+
+</body>
+</html>

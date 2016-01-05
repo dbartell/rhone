@@ -1,0 +1,32 @@
+{% if collection.image %}
+  <img class="collection-img" src="https://cdn.shopify.com/s/files/1/0249/7784/collections/gym2.jpg?v=1448390579">
+{% endif %}
+<div class="clearfix">
+  <div class="title-bar">
+    <div class="collection-title">
+      <h2>{{ collection.title }}</h2>
+    </div>
+    
+    <div class="collection-desc rte">
+	  <img src="//cdn.shopify.com/s/files/1/0249/7784/t/40/assets/stitch-red.png?11695695390730018389">
+      <p>{{ collection.description }}</p>
+    </div>
+  </div>
+  <div class="filter">
+    <p>Filter By</p>
+    <div>Activities</div>
+    <div>-</div>
+    <div>Sizes</div>
+    <div>-</div>
+    <div>Color</div>
+    <div>-</div>
+    <div>Features</div>
+    <div>-</div>
+    <div>Fit</div>    
+    <p>{{ collection.all_products_count }} {{ collection.all_products_count | pluralize: 'Item', 'Items' }}</p>
+  </div>
+  {% for product in collection.products | limit:4 %}
+    {% include 'product-loop' %}
+  {% endfor %}
+</div>
+
